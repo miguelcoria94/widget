@@ -369,6 +369,90 @@
         background-color: #12684e !important;
     }
 
+
+    .modal__question {
+  font-size: 18px !important;
+}
+
+.modal__question-container {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.question-left {
+  background: #f4f2ef;
+  position: relative;
+  right: 60px;
+  width: 50%;
+  padding: 5px 15px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  font-size: 12px !important;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.question-left::before {
+  transform: translateY(-50%) rotate(-90deg);
+  -webkit-transform: translateY(-50%) rotate(-90deg);
+  -moz-transform: translateY(-50%) rotate(-90deg);
+  -ms-transform: translateY(-50%) rotate(-90deg);
+  -o-transform: translateY(-50%) rotate(-90deg);
+  left: -14px;
+  border-bottom: 10px solid #f4f2ef;
+  border-left: 10px solid rgba(0, 0, 0, 0);
+  border-right: 10px solid rgba(0, 0, 0, 0);
+  content: "";
+  height: 0;
+  width: 0;
+  font-size: 12px;
+  top: 50%;
+  position: absolute;
+}
+
+.question-right {
+  background: #f4f2ef;
+  position: relative;
+  left: 70px;
+  width: 45%;
+  font-size: 12px !important;
+  padding: 5px 15px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.question-right::before {
+  border-bottom: 10px solid #f4f2ef;
+  border-left: 10px solid rgba(0, 0, 0, 0);
+  border-right: 10px solid rgba(0, 0, 0, 0);
+  content: "";
+  height: 0;
+  width: 0;
+  font-size: 12px;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%) rotate(90deg);
+  -webkit-transform: translateY(-50%) rotate(90deg);
+  -moz-transform: translateY(-50%) rotate(90deg);
+  -ms-transform: translateY(-50%) rotate(90deg);
+  -o-transform: translateY(-50%) rotate(90deg);
+  right: -14px;
+}
+
+
+
     a.button {
         -webkit-appearance: button !important;
         -moz-appearance: button !important;

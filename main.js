@@ -21,161 +21,38 @@ class GHNWidget {
   }
 
   async initialize() {
-    /**
-     * Create and append a div element to the document body
-     */
     const container = document.createElement("div");
     container.style.position = "fixed";
-    // miguel change
     container.style.zIndex = "10000";
     Object.keys(this.position).forEach(
       (key) => (container.style[key] = this.position[key])
     );
     document.body.appendChild(container);
 
-    /**
-     * Create a button element and give it a class of button__container
-     */
     const buttonContainer = document.createElement("button");
     buttonContainer.classList.add("button__container");
 
-    /**
-     * Create a span element for the widget icon, give it a class of 'widget__icon', update it's innerHTML property to an icon which would serve as the widget icon.
-     */
     const widgetIconElement = document.createElement("span");
-    // widgetIconElement.innerHTML = `<span style="color: white; text-align: center;">GHN</span>`;
     widgetIconElement.innerHTML = THE_ICON;
     widgetIconElement.classList.add("widget__icon");
     this.widgetIcon = widgetIconElement;
 
-    /**
-     * Create a span element for the close icon, give it a class of 'widget__icon' and 'widget__hidden' which would be removed whenever the widget is closed, update it's innerHTML property to an icon which would serve as the widget icon during that state.
-     */
     const closeIconElement = document.createElement("span");
     closeIconElement.innerHTML = CLOSE_ICON;
     closeIconElement.classList.add("widget__icon", "widget__hidden");
     this.closeIcon = closeIconElement;
 
-    /**
-     * Append both icons created to the button element and add a `click` event listener on the button to toggle the widget open and close.
-     */
     buttonContainer.appendChild(this.widgetIcon);
     buttonContainer.appendChild(this.closeIcon);
     buttonContainer.addEventListener("click", this.toggleOpen.bind(this));
 
-    /**
-     * Create a container for the widget and add the following classes:- "widget__hidden", "widget__container"
-     */
     this.widgetContainer = document.createElement("div");
     this.widgetContainer.classList.add("widget__hidden", "widget__container");
 
-    /**
-     * Invoke the `createWidget()` method
-     */
     this.createWidgetContent();
 
-    /**
-     * Append the widget's content and the button to the container
-     */
     container.appendChild(this.widgetContainer);
     container.appendChild(buttonContainer);
-
-    // const previousButton = document.getElementById("previous")
-    // const nextButton = document.getElementById("next")
-    const meCard = document.getElementById("me-card")
-    const someoneElseCard = document.getElementById("someoneelse-card")
-    const submitButton = document.getElementById('validate')
-    const form = document.getElementById('stepByStepForm')
-    // const dots = document.getElementsByClassName('progress-bar__dot')
-    const numberOfSteps = 3
-    let currentStep = 1
-
-    // previousButton.onclick = goPrevious
-    // nextButton.onclick = goNext
-    meCard.onclick = goToMe
-
-    someoneElseCard.addEventListener("click", goToSomeoneElse.bind(this));
-
-    function goNext(e) {
-      console.log("next")
-      e.preventDefault()
-      currentStep += 1
-      goToStep(currentStep)
-    }
-
-    function goToMe(e) {
-      console.log("me")
-      e.preventDefault()
-      goToStep(2)
-    }
-
-    function goToSomeoneElse(e) {
-      console.log("someone else")
-      e.preventDefault()
-      goToStep(4)
-    }
-
-
-      function goPrevious(e) {
-      e.preventDefault()
-      currentStep -= 1
-      goToStep(currentStep)
-    }
-
-    function goToStep(stepNumber){
-      currentStep = stepNumber
-
-      let inputsToHide = document.getElementsByClassName('step')
-      let inputs = document.getElementsByClassName(`step${currentStep}`)
-
-      //hide all input
-      for (let i = 0; i < inputsToHide.length; ++i) {
-        hide(inputsToHide[i])
-      }
-
-      //only show the right one
-      for (let i = 0; i < inputs.length; ++i) {
-        show(inputs[i])
-      }
-
-      //if we reached final step
-      if(currentStep === numberOfSteps){
-        // enable(previousButton)
-        // disable(nextButton)
-        show(submitButton)
-      }
-
-      //else if first step
-      else if(currentStep === 1){
-        // disable(previousButton)
-        // enable(next)
-        hide(submitButton)
-      }
-
-      else {
-        // enable(previousButton)
-        // enable(next)
-        // hide(submitButton)
-      }
-    }
-
-    function enable(elem) {
-      elem.classList.remove("disabled");
-      elem.disabled = false;
-    }
-
-    function disable(elem) {
-      elem.classList.add("disabled");
-      elem.disabled = true;
-    }
-
-    function show(elem){
-      elem.classList.remove('hidden')
-    }
-
-    function hide(elem){
-      elem.classList.add('hidden')
-    }
   }
 
   createWidgetContent() {
@@ -207,6 +84,33 @@ class GHNWidget {
         </div>
     </div>
 
+    <section class="step step3 hidden">
+      <div class="wrapper">
+        <div>
+          <h3 class="crisis-link__title">Ask Questions and Be Direct</h3>
+        </div>
+        
+        <small class="modal__small-text">It’s okay to ask the following questions and be direct when talking about suicide. Contact one of the crisis services numbers if someone you know is suicidal and remember you don’t have to deal with this alone.
+
+
+        </small>
+        <div class="modal__question-container">
+            <div class="modal__question question-left">
+                <p>"Are you thinking about suicide or taking your own life?"</p>
+            </div>
+            <div class="modal__question question-right">
+                <p>"Do you have a plan to hurt yourself or take your own life?"</p>
+            </div>
+            <div class="modal__question question-left">
+                <p>"Have you thought about when you would do it (today, tomorrow, next week)?"</p>
+            </div>
+            <div class="modal__question question-right">
+                <p>"Have you thought about what method you would use?"</p>
+            </div>
+        </div>
+      </div>
+    </section>
+
 
     <div class="step step4 hidden">
         <div class="wrapper">
@@ -223,7 +127,7 @@ class GHNWidget {
             </span>
             </div>
 
-            <div id="ask-questions">
+            <div id="ask-questions" >
             <span class="crisislink__stepone-card">
                 <span class="las la-users crisislink__stepone-icon"></span>
 
@@ -294,12 +198,68 @@ class GHNWidget {
         </div>
     </form>
     `;
+    setTimeout(() => {
+      this.attachEventListeners();
+    }, 0);
+  }
+
+  attachEventListeners() {
+    const meCard = document.getElementById("me-card");
+    const someoneElseCard = document.getElementById("someoneelse-card");
+    const submitButton = document.getElementById("validate");
+    const seResources = document.getElementById("contact-crisis-services");
+    const askResources = document.getElementById("ask-questions");
+
+    if (meCard) meCard.onclick = this.goToMe.bind(this);
+    if (someoneElseCard)
+      someoneElseCard.addEventListener(
+        "click",
+        this.goToSomeoneElse.bind(this)
+      );
+    if (seResources) seResources.onclick = this.goToMe.bind(this);
+    if (askResources) askResources.onclick = this.goToQuestions.bind(this);
+  }
+  goToMe(e) {
+    e.preventDefault();
+    this.goToStep(2);
+  }
+
+  goToSomeoneElse(e) {
+    e.preventDefault();
+    this.goToStep(4);
+  }
+
+  goToQuestions(e) {
+    e.preventDefault();
+    this.goToStep(3);
   }
 
   injectStyles() {
     const styleTag = document.createElement("style");
     styleTag.innerHTML = styles.replace(/^\s+|\n/gm, "");
 
+    document.head.appendChild(styleTag);
+  }
+
+  goToStep(stepNumber) {
+    let currentStep = stepNumber;
+    let inputsToHide = document.getElementsByClassName("step");
+    let inputs = document.getElementsByClassName(`step${currentStep}`);
+
+    for (let i = 0; i < inputsToHide.length; i++) {
+      inputsToHide[i].classList.add("hidden");
+    }
+
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].classList.remove("hidden");
+    }
+
+    // Add here any additional logic needed for enabling/disabling buttons and showing/hiding elements
+  }
+
+  injectStyles() {
+    const styleTag = document.createElement("style");
+    styleTag.innerHTML = styles.replace(/^\s+|\n/gm, "");
     document.head.appendChild(styleTag);
   }
 
@@ -310,11 +270,19 @@ class GHNWidget {
       this.closeIcon.classList.remove("widget__hidden");
       this.widgetContainer.classList.remove("widget__hidden");
     } else {
-      this.createWidgetContent();
+      this.resetWidget();
       this.widgetIcon.classList.remove("widget__hidden");
       this.closeIcon.classList.add("widget__hidden");
       this.widgetContainer.classList.add("widget__hidden");
     }
+  }
+
+  resetWidget() {
+    // Reset to initial state (Step 1)
+    this.goToStep(1);
+
+    // Optionally, if you need to reset any specific content or state, do it here
+    // For example, clearing form fields, resetting variables, etc.
   }
 }
 
