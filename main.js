@@ -87,13 +87,13 @@ class GHNWidget {
     <section class="step step3 hidden">
       <div class="wrapper">
         <div>
-          <h3 class="crisis-link__title">Ask Questions and Be Direct</h3>
+          <h3 class="crisis-link__title" style="text-align: center">Ask Questions and Be Direct</h3>
         </div>
         
-        <small class="modal__small-text">It’s okay to ask the following questions and be direct when talking about suicide. Contact one of the crisis services numbers if someone you know is suicidal and remember you don’t have to deal with this alone.
+        <p>It’s okay to ask the following questions and be direct when talking about suicide. Contact one of the crisis services numbers if someone you know is suicidal and remember you don’t have to deal with this alone.
 
 
-        </small>
+        </p>
         <div class="modal__question-container">
             <div class="modal__question question-left">
                 <p>"Are you thinking about suicide or taking your own life?"</p>
@@ -123,7 +123,7 @@ class GHNWidget {
             <div id="contact-crisis-services">
             <span class="crisislink__stepone-card">
                 <span class="las la-user crisislink__stepone-icon"></span>
-                <p class="crisislink__stepone-text">Contact Crisis Services</p>
+                <p class="crisislink__stepone-text" style="text-align: center">Contact Crisis Services</p>
             </span>
             </div>
 
@@ -131,7 +131,7 @@ class GHNWidget {
             <span class="crisislink__stepone-card">
                 <span class="las la-users crisislink__stepone-icon"></span>
 
-                <p class="crisislink__stepone-text">Ask Questions & Be Direct</p>
+                <p class="crisislink__stepone-text" style="text-align: center">Ask Questions & Be Direct</p>
             </span>
             </div>
         </div>
